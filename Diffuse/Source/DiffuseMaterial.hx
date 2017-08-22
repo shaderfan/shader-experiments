@@ -28,10 +28,25 @@ class DiffusePass extends MaterialPassBase {
     mat = new Matrix3D();
 
     data = new Vector();
+
+    //fc0
     data.push(0.0);
     data.push(1.0);
     data.push(0.0);
     data.push(1.0);
+
+    //fc1
+    data.push(0.0);
+    data.push(0.0);
+    data.push(0.0);
+    data.push(1.0);
+
+    //fc3
+    data.push(1.0);
+    data.push(1.0);
+    data.push(1.0);
+    data.push(1.0);
+
   }
 
   override public function getVertexCode():String {
@@ -45,7 +60,8 @@ class DiffusePass extends MaterialPassBase {
   override public function getFragmentCode(animCode:String):String {
     return '
 
-      mov oc, fc0
+      add ft0, fc0, fc1
+      pow oc, ft0, fc2
 
     ';
   }
@@ -53,7 +69,7 @@ class DiffusePass extends MaterialPassBase {
   override public function activate(stage3DProxy:Stage3DProxy, camera:Camera3D):Void {
     super.activate(stage3DProxy,camera);
     stage3DProxy._context3D.setProgramConstantsFromVector(
-      Context3DProgramType.FRAGMENT, 0, data, 1);
+      Context3DProgramType.FRAGMENT, 0, data, 3);
   }
 
   override public function render(renderable:IRenderable, 

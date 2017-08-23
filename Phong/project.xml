@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Away3D Basic Phong" package="is.montrose.phong" version="0.0.0" />
+	<app main="Phong" file="Phong" path="Export" />
+	
+	<window background="0x000000" orientation="landscape" />
+	<window width="1024" height="576" fps="120"/>
+	
+	<source path="Source" />
+	
+	<haxelib name="away3d" />
+	
+	<assets path="Assets" rename="assets" />
+	
+</project>
